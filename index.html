@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNF ပြည်တွင်းပြည်ပသာသနာပြုအဖွဲ့ အလှူငွေစာရင်းများ</title>
+    <title>Zoom Online တရားစခန်းပွဲများ - ၂၀၂၆ နိုဝင်ဘာ</title>
     <style>
         :root {
-            --primary-color: #b8860b;
-            --secondary-color: #d4af37;
-            --bg-color: #fcfbfa;
+            --primary-color: #8e44ad;
+            --bg-color: #f5f6fa;
             --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e6dfd5;
+            --text-color: #2f3640;
+            --blue-zone: #2980b9;
+            --red-zone: #c0392b;
+            --yellow-zone: #d35400;
         }
 
         body {
-            font-family: 'Pyidaungsu', 'Myanmar Text', sans-serif;
+            font-family: 'Pyidaungsu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -24,315 +25,414 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
-        header {
+        .header {
             text-align: center;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            background: linear-gradient(135deg, #7158e2, #cd84f1);
             color: white;
-            padding: 20px 15px;
+            padding: 25px 15px;
             border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            font-size: 1.4rem;
-            margin: 0;
-            letter-spacing: 0.5px;
+        .header h1 {
+            margin: 8px 0;
+            font-size: 22px;
+            font-weight: 700;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
+        .header p {
+            margin: 4px 0;
+            font-size: 15px;
+            opacity: 0.9;
         }
 
-        .tab-btn {
-            background-color: #e2dcd2;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
+        .notice {
+            background-color: #fff200;
+            color: #c0392b;
+            padding: 10px;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #555;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 4px 8px rgba(184, 134, 11, 0.3);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .section-title {
-            text-align: center;
-            font-size: 1.15rem;
+            font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #eae6df;
-            border-radius: 8px;
+            margin: 25px 0 12px 0;
+            padding-left: 8px;
+            border-left: 4px solid currentColor;
         }
 
-        .date-header {
-            font-size: 1rem;
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+        }
+
+        .card.blue::before { background-color: var(--blue-zone); }
+        .card.red::before { background-color: var(--red-zone); }
+        .card.yellow::before { background-color: var(--yellow-zone); }
+
+        .card-header {
+            font-size: 16px;
             font-weight: bold;
-            color: var(--primary-color);
-            margin: 20px 0 10px 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 4px;
+            margin-bottom: 10px;
         }
 
-        .donor-list {
+        .info-row {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 14.5px;
         }
 
-        .donor-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+        .info-label {
+            width: 75px;
+            color: #7f8c8d;
+            font-weight: 600;
         }
 
-        .donor-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .info-value {
             flex: 1;
         }
 
-        .donor-no {
-            background-color: var(--secondary-color);
-            color: white;
-            font-size: 0.85rem;
-            padding: 2px 8px;
+        .zoom-box {
+            background-color: #f8f9fa;
+            padding: 10px 14px;
             border-radius: 6px;
-            font-weight: bold;
-            min-width: 25px;
-            text-align: center;
+            margin: 12px 0;
+            font-size: 14px;
+            border: 1px dashed #dcdde1;
         }
 
-        .donor-name {
-            font-size: 0.95rem;
-            font-weight: 500;
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
         }
 
-        .donor-amount {
-            font-size: 0.95rem;
-            font-weight: bold;
-            color: #27ae60;
-            white-space: nowrap;
-            background-color: #e8f8f5;
-            padding: 4px 10px;
+        .btn {
+            flex: 1;
+            padding: 9px 12px;
             border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: opacity 0.2s;
         }
 
-        .total-box {
-            background: linear-gradient(135deg, #d4af37, #b8860b);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 25px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .btn:hover {
+            opacity: 0.9;
         }
+
+        .btn-primary {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .btn-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+    /* Photo gallery */
+    .photo-gallery {
+        background: #fff;
+        border-radius: 12px;
+        padding: 18px;
+        margin: 22px 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,.07);
+        text-align: center;
+    }
+    .photo-gallery h2 {
+        color: var(--primary-color);
+        margin: 0 0 12px;
+        font-size: 20px;
+    }
+    .gallery-frame {
+        position: relative;
+        background: #f0edf4;
+        border-radius: 10px;
+        overflow: hidden;
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .gallery-frame img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 75vh;
+        object-fit: contain;
+    }
+    .gallery-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+    }
+    .gallery-controls button {
+        border: 0;
+        border-radius: 7px;
+        padding: 10px 18px;
+        color: white;
+        background: var(--primary-color);
+        font: inherit;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .gallery-controls button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+    }
+    #gallery-counter {
+        min-width: 70px;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+    .gallery-thumbnails {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
+    .gallery-thumbnails button {
+        border: 2px solid transparent;
+        padding: 2px;
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 76px;
+    }
+    .gallery-thumbnails button.active {
+        border-color: var(--primary-color);
+    }
+    .gallery-thumbnails img {
+        width: 100%;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>SNF ပြည်တွင်းပြည်ပသာသနာပြုအဖွဲ့</h1>
-    </header>
 
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('kathin')">ကထိန်အလှူစာရင်း</button>
-        <button class="tab-btn" onclick="switchTab('flood')">ရေဘေးအလှူစာရင်း</button>
+
+    <!-- Photo Gallery: GitHub repository ထဲတွင် ပုံများကို HTML ဖိုင်နှင့်အတူထားပါ -->
+    <section class="photo-gallery" aria-label="Photo gallery">
+        <h2>📷 တရားစခန်း ဓာတ်ပုံများ</h2>
+        <div class="gallery-frame">
+            <img id="gallery-image" src="level1a.png" alt="တရားစခန်း ဓာတ်ပုံ 1">
+        </div>
+        <div class="gallery-controls">
+            <button id="prev-photo" type="button">← Previous</button>
+            <span id="gallery-counter" aria-live="polite">1 / 4</span>
+            <button id="next-photo" type="button">Next →</button>
+        </div>
+        <div class="gallery-thumbnails" id="gallery-thumbnails"></div>
+    </section>
+
+    <script>
+        // ပုံဖိုင်များကို HTML ဖိုင်နှင့် folder တစ်ခုတည်းတွင် upload လုပ်ပါ။
+        const photos = [
+            { src: "level1a.png", alt: "Level 1A" },
+            { src: "level1bc.png", alt: "Level 1B / 1C" },
+            { src: "level2.png", alt: "Level 2" },
+            { src: "level3.png", alt: "Level 3" }
+        ];
+
+        let currentPhoto = 0;
+        const mainImage = document.getElementById("gallery-image");
+        const counter = document.getElementById("gallery-counter");
+        const prevButton = document.getElementById("prev-photo");
+        const nextButton = document.getElementById("next-photo");
+        const thumbnails = document.getElementById("gallery-thumbnails");
+
+        function showPhoto(index) {
+            currentPhoto = (index + photos.length) % photos.length;
+            mainImage.src = photos[currentPhoto].src;
+            mainImage.alt = photos[currentPhoto].alt;
+            counter.textContent = `${currentPhoto + 1} / ${photos.length}`;
+            prevButton.disabled = currentPhoto === 0;
+            nextButton.disabled = currentPhoto === photos.length - 1;
+
+            [...thumbnails.children].forEach((button, i) => {
+                button.classList.toggle("active", i === currentPhoto);
+                button.setAttribute("aria-pressed", i === currentPhoto ? "true" : "false");
+            });
+        }
+
+        photos.forEach((photo, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.setAttribute("aria-label", `${photo.alt} ကို ကြည့်ရန်`);
+            button.innerHTML = `<img src="${photo.src}" alt="">`;
+            button.addEventListener("click", () => showPhoto(index));
+            thumbnails.appendChild(button);
+        });
+
+        prevButton.addEventListener("click", () => showPhoto(currentPhoto - 1));
+        nextButton.addEventListener("click", () => showPhoto(currentPhoto + 1));
+
+        // Keyboard ဖြင့်လည်း previous / next ပြောင်းနိုင်သည်။
+        document.addEventListener("keydown", event => {
+            if (event.key === "ArrowLeft") showPhoto(currentPhoto - 1);
+            if (event.key === "ArrowRight") showPhoto(currentPhoto + 1);
+        });
+
+        showPhoto(0);
+    </script>
+
+    <!-- Header Section -->
+    <div class="header">
+        <p>ကျေးဇူးတော်ရှင် <br>အောင်လံဆရာတော်ဘုရား၏<br> ဥပနိဿယဖြင့်</p>
+        <h1>Sasana Nursery Foundation<br>ပြည်တွင်းပြည်ပသာသနာပြုအဖွဲ့</h1>
+        <p>၂၀၂၆ ခုနှစ်၊ နိုဝင်ဘာလအတွက်<br> Zoom Online တရားစခန်းပွဲများ</p>
     </div>
 
-    <!-- ကထိန် Tab -->
-    <div id="kathin" class="tab-content active">
-        <div class="section-title">၂၀၂၆ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ</div>
-        
-        <div class="date-header">27-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု- နေပြည်တော် (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂</span><span class="donor-name">ကိုသန့်ဇော်လင်း + မဝေမာ သားမောင်သက်ပိုင်လင်း၊ သမီး မစံယွန်းမေ မိသားစု- ရန်ကုန်မြို့ (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃</span><span class="donor-name">မသိမ့်သဥ္စာစိုး (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄</span><span class="donor-name">မကေသွယ်ခိုင် (Kpay)</span></div><div class="donor-amount">110,000/-</div></div>
-        </div>
-
-        <div class="date-header">28-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅</span><span class="donor-name">ဒေါ်စုစုအောင် (KBZ Mobile Banking)</span></div><div class="donor-amount">3,000,000/-</div></div>
-        </div>
-
-        <div class="date-header">30-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၆</span><span class="donor-name">ကိုစခိုင်မင်းဦး+မဖြူဖြူဝင်း၊သမီးမဖြူဖြူခိုင်မင်း၊သားမောင်လရောင်လင်း မိသားစု (Kpay)</span></div><div class="donor-amount">40,000/-</div></div>
-        </div>
-
-        <div class="date-header">1-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၇</span><span class="donor-name">မိခင်ကြီးဒေါ်သန်းအားအမှူးထား၍ မစိန်စိန်မိသားစု (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၈</span><span class="donor-name">ဒေါ်မို့မို့ (Kpay)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">မအင်ကြင်း (Kpay)</span></div><div class="donor-amount">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">2-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၀</span><span class="donor-name">ထူးလင်းယံ မိသားစု (Kpay)</span></div><div class="donor-amount">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">4-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၁</span><span class="donor-name">မဧပရယ်ဌေး (Cash)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၂</span><span class="donor-name">မကျော့ကျော့ခိုင် (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">5-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၃</span><span class="donor-name">ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင်မိသားစု (Cash)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၄</span><span class="donor-name">မချောစုလှိုင် (Kpay)</span></div><div class="donor-amount">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၅</span><span class="donor-name">မမြမြမိုး (Kpay)</span></div><div class="donor-amount">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၆</span><span class="donor-name">မသီသီလှိုင် (Cash)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၇</span><span class="donor-name">ဦးတင်အေး မိသားစု (Cash)</span></div><div class="donor-amount">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၈</span><span class="donor-name">ဒေါ်မြင့်မြင့်ဝေ၊ ဒေါ်လှလှဝင်း မိသားစု မြစ်ကြီးနားမြို့ (ယောဂီဟောင်း) (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">6-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၉</span><span class="donor-name">မယမင်းဖြိုးအိ (Kpay)</span></div><div class="donor-amount">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၀</span><span class="donor-name">မဆွေဆွေမြင့် (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">8-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၁</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ (Kpay)</span></div><div class="donor-amount">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">9-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">ဒေါ်ချိုချိုအောင် ၊ ဒေါ်မီမီအောင် မိသားစု (Kpay)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၃</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ကိုလွမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">10-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၅</span><span class="donor-name">မနန်းသီရိဦး မိသားစု (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၆</span><span class="donor-name">မနှင်းလဲ့ထွန်းမိသားစု (Kpay)</span></div><div class="donor-amount">500,000/-</div></div>
-        </div>
-
-        <div class="date-header">11-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၇</span><span class="donor-name">(ဦးအောင်ဆန်းဝင်း)+ဒေါ်စန်းယုမော် သား နေမင်းကို၊ ညီလမင်း၊ ကြယ်မင်းမြတ် မိသားစု (Kpay)</span></div><div class="donor-amount">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">12-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၈</span><span class="donor-name">ဖခင်နှင့်မိခင်တို့အား ရည်စူး၍ ဦးသန်းဇော် + ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount">500,000/-</div></div>
-        </div>
-
-        <div class="date-header">13-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၉</span><span class="donor-name">ဒေါ်ကလျာအောင် (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-        </div>
-
-        <div class="total-box">ကထိန်အလှူငွေစုစုပေါင်း - 5,980,000/- ကျပ်</div>
+    <!-- Notice -->
+    <div class="notice">
+        တရားစခန်းပွဲသို့ <br>၁၀ မိနစ် ကြိုတင်ဝင်ရောက်ပါရန် 
     </div>
 
-    <!-- ရေဘေး Tab -->
-    <div id="flood" class="tab-content">
-        <div class="section-title">ထားဝယ်မြို့နယ်ရှိ သာမဏေမိဘများတွေ့ဆုံရန် ခရီးစရိတ် နှင့် ရေဘေးအလှူ</div>
-
-        <div class="date-header">3-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁</span><span class="donor-name">မအင်ကြင်းလှမြင့် မိသားစုအလှူ (Kpay)</span></div><div class="donor-amount">1,000,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂</span><span class="donor-name">မနန်းဟေမာန်ဆောင်း မိသားစု အလှူ (Kpay)</span></div><div class="donor-amount">1,000,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃</span><span class="donor-name">မကျော့ကျော့ခိုင် (Kpay)</span></div><div class="donor-amount">200,000/-</div></div>
+    <!-- ယောဂီဟောင်းများ ကဏ္ဍ -->
+    <div class="section-title" style="color: var(--blue-zone);">🔵 ယောဂီဟောင်း<br>(Level 3A, 3B, 3C)</div>
+    
+    <!-- 3A Card -->
+    <div class="card blue">
+        <div class="card-header" style="color: var(--blue-zone);">
+            3A 🔵 S2026-043 Online (10 Days)
         </div>
-
-        <div class="date-header">5-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄</span><span class="donor-name">ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင် မိသားစု (Cash)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော် (Kpay)</span></div><div class="donor-amount">300,000/-</div></div>
+        <div class="info-row">
+            <div class="info-label">ရက်စွဲ -</div>
+            <div class="info-value">15 Nov 2026 - 24 Nov 2026</div>
         </div>
-
-        <div class="date-header">8-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၆</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ (Kpay)</span></div><div class="donor-amount">300,000/-</div></div>
+        <div class="info-row">
+            <div class="info-label">အချိန် -</div>
+            <div class="info-value">7:00 PM – 9:30 PM</div>
         </div>
-
-        <div class="date-header">9-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၇</span><span class="donor-name">ထူးလင်းယံမိသားစု စမ်းချောင်း (Kpay)</span></div><div class="donor-amount">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၈</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">ကိုလွမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
+        <div class="zoom-box">
+            <strong>Zoom Meeting ID:</strong> 819 8509 9472 <br>
+            <strong>Passcode:</strong> 122605
         </div>
-
-        <div class="date-header">10-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၀</span><span class="donor-name">မနှင်းလဲ့ထွန်း (Kpay)</span></div><div class="donor-amount">500,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၁</span><span class="donor-name">မနန်းသီရိဦး မိသားစု (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
+        <div class="btn-group">
+            <a href="https://tig32sasana.org/session/%F0%9F%94%B5S2026-043%20Online" target="_blank" class="btn btn-primary">တရားစခန်း စာရင်းပေးရန်</a>
+            <a href="https://tig32sasana.org/attendance/UCLEsRMclSfjDj1pP0AqiCAwEgdzBfYQLJQMfn9tz1hGLPADkVudwGA1I1YGdRc9" target="_blank" class="btn btn-success">Attendance ထည့်ရန်</a>
         </div>
+    </div>
 
-        <div class="date-header">11-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၂</span><span class="donor-name">(ဦးအောင်ဆန်းဝင်း) + ဒေါ်ဆန်းယုမော် သား နေမင်းကို၊ ညီလမင်း၊ ကြယ်မင်းမြတ် မိသားစု (Kpay)</span></div><div class="donor-amount">30,000/-</div></div>
+    <!-- ယောဂီသစ်များ ကဏ္ဍ -->
+    <div class="section-title" style="color: var(--red-zone);">🔴 🟡 ယောဂီသစ်<br> (Level 1A, 1B, 1C / 2A, 2B, 2C)</div>
+    
+    <!-- 2A Card -->
+    <div class="card red">
+        <div class="card-header" style="color: var(--red-zone);">
+            2A 🔴 S2026- 013 Online (10 Days)
         </div>
-
-        <div class="date-header">12-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၃</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော် (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၄</span><span class="donor-name">မသိမ့်သဥ္စာစိုး (Kpay)</span></div><div class="donor-amount">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၅</span><span class="donor-name">ဦးသန်းဇော် + ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
+        <div class="info-row">
+            <div class="info-label">ရက်စွဲ -</div>
+            <div class="info-value">15 Nov 2026 - 24 Nov 2026</div>
         </div>
-
-        <div class="date-header">13-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၆</span><span class="donor-name">ဒေါ်ကလျာအောင် (Kpay)</span></div><div class="donor-amount">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၇</span><span class="donor-name">ဒေါ်နုနုခိုင်နှင့်သမီးမကျော့ (Kpay)</span></div><div class="donor-amount">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၈</span><span class="donor-name">မချောစုလှိုင် မိသားစု (Kpay)</span></div><div class="donor-amount">30,000/-</div></div>
+        <div class="info-row">
+            <div class="info-label">အချိန် -</div>
+            <div class="info-value">7:00 PM – 9:30 PM</div>
         </div>
+        <div class="zoom-box">
+            <strong>Zoom Meeting ID:</strong> 899 4083 9111 <br>
+            <strong>Passcode:</strong> 152411
+        </div>
+        <div class="btn-group">
+            <a href="https://tig32sasana.org/session/%F0%9F%94%B4S2026-%20%20013%20Online" target="_blank" class="btn btn-primary">တရားစခန်း စာရင်းပေးရန်</a>
+            <a href="https://tig32sasana.org/attendance/tFAX90nqzpHbVRIk2BWVpLsOsogexxjX5gX87HnQmvqXD3QQGipeRkFnbp2HoOd9" target="_blank" class="btn btn-success">Attendance ထည့်ရန်</a>
+        </div>
+    </div>
 
-        <div class="total-box">ရေဘေးအလှူငွေစုစုပေါင်း - 4,530,000/- ကျပ်</div>
+    <!-- 1B Card -->
+    <div class="card yellow">
+        <div class="card-header" style="color: var(--yellow-zone);">
+            1B 🟡 S2026- 013 Online (10 Days)
+        </div>
+        <div class="info-row">
+            <div class="info-label">ရက်စွဲ -</div>
+            <div class="info-value">15 Nov 2026 - 24 Nov 2026</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">အချိန် -</div>
+            <div class="info-value">7:00 PM – 9:30 PM</div>
+        </div>
+        <div class="zoom-box">
+            <strong>Zoom Meeting ID:</strong> 899 4083 9111 <br>
+            <strong>Passcode:</strong> 152411
+        </div>
+        <div class="btn-group">
+            <a href="https://tig32sasana.org/session/%F0%9F%9F%A1S2026-%20013%20Online" target="_blank" class="btn btn-primary">တရားစခန်း စာရင်းပေးရန်</a>
+            <a href="https://tig32sasana.org/attendance/ncYI7KBZzhJvzK9WKYzSJCJaG3k786W2eJIOpjrBQ1p4kUPaEVO1H0L7MRVJHEFN" target="_blank" class="btn btn-success">Attendance ထည့်ရန်</a>
+        </div>
+    </div>
+
+    <!-- 1A Card -->
+    <div class="card yellow">
+        <div class="card-header" style="color: var(--yellow-zone);">
+            1A 🟡 S2026-013 Online (5 Days)
+        </div>
+        <div class="info-row">
+            <div class="info-label">ရက်စွဲ -</div>
+            <div class="info-value">15 Nov 2026 - 19 Nov 2026</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">အချိန် -</div>
+            <div class="info-value">7:00 PM – 9:30 PM</div>
+        </div>
+        <div class="zoom-box">
+            <strong>Zoom Meeting ID:</strong> 899 4083 9111 <br>
+            <strong>Passcode:</strong> 152411
+        </div>
+        <div class="btn-group">
+            <a href="https://tig32sasana.org/session/%F0%9F%9F%A1S2026-013%20Online" target="_blank" class="btn btn-primary">တရားစခန်း စာရင်းပေးရန်</a>
+            <a href="https://tig32sasana.org/attendance/EpNooADO9hNVn1y81dtiwtK2t2aVRVr5LNpGQgegTlnETrNFs3rRYR4OKtYWZEkh" target="_blank" class="btn btn-success">Attendance ထည့်ရန်</a>
+        </div>
     </div>
 
 </div>
-
-<script>
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
